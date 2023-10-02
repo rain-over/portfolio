@@ -1,19 +1,13 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import SectionHeader from './section-header';
 
 import { skillsData } from '@/../lib/data';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useActiveSectionContext } from '../../context/active-section-context';
 import clsx from 'clsx';
+import { useSectionInView } from '../../lib/hooks';
 
 export default function Skills() {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-  const { setActiveSection } = useActiveSectionContext();
+  const { ref } = useSectionInView('Skills');
   const currentTech: string[] = [
     'JavaScript',
     'TypeScript',
@@ -27,11 +21,6 @@ export default function Skills() {
     'CSS',
   ];
 
-  useEffect(() => {
-    if (inView) {
-      setActiveSection('Skills');
-    }
-  }, [inView, setActiveSection]);
   return (
     <section
       className="h-[100vh] max-w-[45rem] mb-28 mx-auto scroll-mt-28 text-center  sm:mb-40"

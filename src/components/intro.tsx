@@ -1,28 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useEffect } from 'react';
 
-import { FaGithubSquare, FaFileDownload } from 'react-icons/fa';
-import { HiDownload } from 'react-icons/hi';
 import { motion } from 'framer-motion';
-import { useActiveSectionContext } from '@/../context/active-section-context';
-import { useInView } from 'react-intersection-observer';
+import { FaFileDownload, FaGithubSquare } from 'react-icons/fa';
 
+import { useSectionInView } from '@/../lib/hooks';
 import profile from '@/../public/profile.jpg';
 import Link from 'next/link';
 
 export default function intro() {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-  const { setActiveSection } = useActiveSectionContext();
-
-  useEffect(() => {
-    if (inView) {
-      setActiveSection('Home');
-    }
-  }, [inView, setActiveSection]);
+  const { ref } = useSectionInView('Home');
 
   return (
     <section

@@ -1,16 +1,15 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
-
-import { motion } from 'framer-motion';
 import { links } from '@/../lib/data';
+import { motion } from 'framer-motion';
 
+import { useActiveSectionContext } from '@/../context/active-section-context';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useActiveSectionContext } from '@/../context/active-section-context';
 
 export default function Header() {
-  const { activeSection, setActiveSection } = useActiveSectionContext();
+  const { activeSection, setActiveSection, setTimeOfLastClick } =
+    useActiveSectionContext();
 
   return (
     <header className="z[999] relative">
@@ -57,7 +56,10 @@ export default function Header() {
                   focus:scale-105
                   sm:py-3"
                 href={link.hash}
-                onClick={() => setActiveSection(link.name)}
+                onClick={() => {
+                  setActiveSection(link.name); // set active section on scroll
+                  setTimeOfLastClick(Date.now()); // fix jumpy nav highlight on section jumps
+                }}
               >
                 {link.name}
               </Link>
