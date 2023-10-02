@@ -10,7 +10,7 @@ import { useSectionInView } from '@/../lib/hooks';
 import profile from '@/../public/profile.jpg';
 import Link from 'next/link';
 
-export default function intro() {
+export default function Intro() {
   const { ref } = useSectionInView('Home');
 
   return (
