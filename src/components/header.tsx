@@ -12,7 +12,7 @@ export default function Header() {
     useActiveSectionContext();
 
   return (
-    <header className="z[999] relative">
+    <header className="z-[999] relative">
       <motion.div
         animate={{ y: 0, opacity: 1 }}
         // className="fixed right-0  top-0
@@ -20,9 +20,9 @@ export default function Header() {
         //   rounded-none border border-white border-opacity-40
         //   backdrop-blur-[1rem] bg-white bg-opacity-80 shadow-lg shadow-black/[0.03]
         //   sm:h-[3.25rem] sm:right-[1rem] sm:rounded-full sm:top-6 sm:w-[34rem]"
-        className="fixed right-0  top-0 
+        className="bg-amber-50 bg-opacity-80 fixed right-0  top-0 
         h-[4.5rem] w-full 
-        bg-opacity-80
+        sm:rounded-full
         sm:h-[3.25rem] sm:right-[1rem] sm:top-6 sm:w-[34rem]"
         initial={{ y: -100, opacity: 0 }}
       ></motion.div>

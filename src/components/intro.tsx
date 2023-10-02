@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { motion } from 'framer-motion';
 import { FaFileDownload, FaGithubSquare } from 'react-icons/fa';
+import { FiDownload } from 'react-icons/fi';
 
 import { useSectionInView } from '@/../lib/hooks';
 import profile from '@/../public/profile.jpg';
@@ -17,12 +18,12 @@ export default function intro() {
       className="flex flex-col h-[100vh] items-center 
       lg:flex-row lg:justify-around"
       id="home"
+      ref={ref}
     >
       <motion.div
         animate={{ x: 0, opacity: 1 }}
         className="max-w-[40rem] mb-12 mt-28"
         initial={{ x: -50, opacity: 0 }}
-        ref={ref}
         transition={{
           type: 'spring',
           stiffness: 125,
@@ -42,23 +43,20 @@ export default function intro() {
         </p>
         <div className="flex flex-col font-medium items-center gap-2 mt-10 text-lg sm:flex-row sm:justify-start">
           <Link
-            className="active:scale-105 bg-amber-50 flex focus:scale-110 hover:scale-110 items-center gap-3 outline-none px-7 py-2 rounded-full shadow-sm transition"
+            className="active:scale-105 bg-white flex focus:scale-110 hover:scale-110 items-center gap-3 outline-none px-7 py-2 rounded-full shadow-sm transition"
             href="#contact"
           >
             Contact me
           </Link>
           <a
-            className="active:scale-105 bg-amber-50 flex focus:scale-110 hover:scale-110 items-center outline-none px-7 py-2 rounded-full shadow-sm transition"
+            className="active:scale-105 bg-white flex focus:scale-110 hover:scale-110 items-center outline-none px-7 py-2 rounded-full shadow-sm transition"
             download
             href="/CV.pdf"
           >
-            Download CV
-            <span className="text-[0.9rem]">
-              <FaFileDownload />
-            </span>
+            <FiDownload className="mr-1" /> Download CV
           </a>
           <a
-            className="active:scale-105 bg-amber-50 flex focus:scale-110 hover:scale-110 items-center outline-none px-3 py-3 rounded-full shadow-sm text-[1.35rem] text-gray-700 transition"
+            className="active:scale-105 bg-white flex focus:scale-110 hover:scale-110 items-center outline-none px-3 py-3 rounded-full shadow-sm text-[1.35rem] text-gray-700 transition"
             href="https://github.com/rain-over"
             target="_blank"
           >
