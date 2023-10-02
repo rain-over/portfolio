@@ -1,25 +1,40 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { FaGithubSquare, FaFileDownload } from 'react-icons/fa';
 import { HiDownload } from 'react-icons/hi';
 import { motion } from 'framer-motion';
+import { useActiveSectionContext } from '@/../context/active-section-context';
+import { useInView } from 'react-intersection-observer';
 
 import profile from '@/../public/profile.jpg';
 import Link from 'next/link';
 
 export default function intro() {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('Home');
+    }
+  }, [inView, setActiveSection]);
+
   return (
     <section
-      className="flex flex-col h-[100vh] items-center
+      className="flex flex-col h-[100vh] items-center 
       lg:flex-row lg:justify-around"
+      id="home"
     >
       <motion.div
-        className="max-w-[40rem] mb-12 mt-28"
         animate={{ x: 0, opacity: 1 }}
+        className="max-w-[40rem] mb-12 mt-28"
         initial={{ x: -50, opacity: 0 }}
+        ref={ref}
         transition={{
           type: 'spring',
           stiffness: 125,
@@ -31,7 +46,7 @@ export default function intro() {
         <p className="leading-[2rem] text-[1.2rem]">
           <span className="font-bold">I'm Rain. </span>I'm a{' '}
           <span className="font-bold">full-stack</span> Engineer, and I've been
-          doing web development for nearly a{' '}
+          doing web development for nearly{' '}
           <span className="font-bold">10 years</span>. I enjoy building websites
           and apps and right now, I'm really into{' '}
           <span className="font-medium underline">React (Next.js)</span> and{' '}

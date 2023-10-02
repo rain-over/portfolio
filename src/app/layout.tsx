@@ -1,9 +1,10 @@
+// defaults
 import Header from '@/components/header';
-
 import './globals.css';
 import type { Metadata } from 'next';
+
 import { Inter } from 'next/font/google';
-import { format } from 'path';
+import ActiveSectionContextProvider from '@/../context/active-section-context';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="!scroll-smooth">
       <body
         className={`${inter.className} bg-amber-100 text-gray-950 relative h-[5000px]`}
       >
@@ -34,11 +35,14 @@ export default function RootLayout({
         <div className="bg-[#ffffff] -z-[9] blur-[1.5rem] absolute rounded-full w-[8rem] h-[8rem] top-[13rem] right-[5rem]"></div>
         <div className="bg-[#ecd343] -z-[9] blur-[1rem] opacity-40 fixed rounded-full w-[0.5rem] top-[20rem] right-[8rem] bottom-[-1rem]"></div>
 
-        <Header />
-        {/* <div className="bg-[#9d43d1] absolute -z-10 top-[-6rem] right-[11rem] h-[32rem] w-[32rem] blur-[35rem] sm:w-[69rem]"></div>
+        {/*can still house server componrnts*/}
+        <ActiveSectionContextProvider>
+          <Header />
+          {/* <div className="bg-[#9d43d1] absolute -z-10 top-[-6rem] right-[11rem] h-[32rem] w-[32rem] blur-[35rem] sm:w-[69rem]"></div>
         <div className="bg-[#dbd7fb] absolute -z-10 top-[30rem] left-[-35remrem] h-[32rem] rounded-full w-[32rem] blur-[15rem] sm:w-[69rem]"></div> */}
-        <div className="absolute -z-10 top-[30rem] left-[-35remrem] h-[32rem] rounded-full w-[32rem] blur-[15rem] sm:w-[69rem]"></div>
-        {children}
+          <div className="absolute -z-10 top-[30rem] left-[-35remrem] h-[32rem] rounded-full w-[32rem] blur-[15rem] sm:w-[69rem]"></div>
+          {children}
+        </ActiveSectionContextProvider>
       </body>
     </html>
   );
