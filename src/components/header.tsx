@@ -6,21 +6,32 @@ import { motion } from 'framer-motion';
 import { useActiveSectionContext } from '@/../context/active-section-context';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(false);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY;
+
+    setVisible(window.scrollY > 0);
+    // setPrevScrollPos(currentScrollPos);
+    // console.log(currentScrollPos, visible);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="z-[999] relative">
+    <header className={`z-[999] relative  ${visible ? 'block' : 'hidden'}`}>
       <motion.div
         animate={{ y: 0, opacity: 1 }}
-        // className="fixed right-0  top-0
-        //   h-[4.5rem] w-full
-        //   rounded-none border border-white border-opacity-40
-        //   backdrop-blur-[1rem] bg-white bg-opacity-80 shadow-lg shadow-black/[0.03]
-        //   sm:h-[3.25rem] sm:right-[1rem] sm:rounded-full sm:top-6 sm:w-[34rem]"
-        className="bg-amber-50 bg-opacity-80 fixed right-0  top-0 
+        className=" fixed right-0  top-0 
         h-[4.5rem] w-full 
         sm:rounded-full
         sm:h-[3.25rem] sm:right-[1rem] sm:top-6 sm:w-[34rem]"

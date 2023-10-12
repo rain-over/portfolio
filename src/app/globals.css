@@ -2,10 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-.douXzp {
-  color: #030712 !important;
-}
+@layer components {
+  .full-bleed {
+    box-shadow: 0 0 0 100vmax #e4e4e7;
+    clip-path: inset(0 -100vmax);
+  }
 
-.dHQoJD {
-  background: #6b7280 !important;
+  .profile-cover {
+    width: 250px;
+    height: 140px;
+    background: #e2e8f0;
+    background: radial-gradient(
+        circle 20px at 100% 0%,
+        transparent,
+        transparent 125px,
+        #e2e8f0 100px
+      ),
+      radial-gradient(
+        circle 20px at 0% 0%,
+        transparent,
+        transparent 125px,
+        #e2e8f0 100px
+      );
+    background-size: 125px 200px, 125px 200px;
+    background-position: 0px 0px, 100% 0;
+    background-repeat: no-repeat;
+    left: -4px;
+    bottom: -19px;
+    position: absolute;
+  }
 }

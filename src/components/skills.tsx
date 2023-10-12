@@ -4,8 +4,8 @@ import SectionHeader from './section-header';
 
 import { skillsData } from '@/../lib/data';
 import clsx from 'clsx';
-import { useSectionInView } from '../../lib/hooks';
 import { motion } from 'framer-motion';
+import { useSectionInView } from '../../lib/hooks';
 
 const currentTech: string[] = [
   'JavaScript',
@@ -38,8 +38,7 @@ export default function Skills() {
 
   return (
     <section
-      className="h-[100vh] max-w-[45rem] mb-28 mx-auto scroll-mt-28 text-center 
-      sm:mb-40"
+      className="h-[100vh] max-w-[45rem] mb-28 mx-auto pt-[15vh] sm:mb-40 snap-center text-center"
       id="skills"
       ref={ref}
     >
@@ -49,7 +48,7 @@ export default function Skills() {
         {skillsData.map((skill, index) => (
           <motion.li
             className={clsx(
-              'bg-white borderBlack rounded-xl px-5 py-3 shadow-sm',
+              'bg-white borderBlack rounded-xl px-5 py-3 shadow-sm se:px-3 se:py-1',
               {
                 'border border-green-700': currentTech.includes(skill),
               }

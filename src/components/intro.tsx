@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  AnimationProps,
-  MotionConfig,
-  Transition,
-  circOut,
-  motion,
-} from 'framer-motion';
+import { Transition, circOut, motion } from 'framer-motion';
 // import motion from './motion';
 
 import { useMotions, useSectionInView } from '@/../lib/hooks';
@@ -14,11 +8,10 @@ import { Radley } from 'next/font/google';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 
+import { animate, transition as trans } from '@/../lib/framer-config';
+import { JustifyContentProperty } from '@/../lib/types';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { FiDownload, FiMail } from 'react-icons/fi';
-import { animate, transition } from '@/../lib/framer-config';
-import { JustifyContentProperty } from '@/../lib/types';
-import { intro } from '../../lib/content';
 
 const name: Array<String> = "I'm Rain   ".split('');
 const radley = Radley({ subsets: ['latin'], weight: '400' });
@@ -31,20 +24,18 @@ const radley_i = Radley({
 export default function Intro() {
   const [justifyContent, setJustifyContent] =
     useState<JustifyContentProperty>('center');
-  const parallaxRef = useRef(null);
   const { ref } = useSectionInView('Home');
-  // const transition = () => transition;
-  // let transition = {
-  //   ...transotion
-  // };
+
+  const transition: Transition = useMotions() ? {} : { delay: 0, duration: 0 };
 
   const springTransition: Transition = {
     type: 'spring',
     // stiffness: 500,
     damping: 30,
     duration: 3,
-    ...transition(),
+    ...transition,
   };
+
   const hide = animate({ opacity: 0 });
 
   return (
@@ -67,20 +58,20 @@ export default function Intro() {
           delay: 1.2,
           duration: 2,
           ease: 'easeOut',
-          ...transition(),
+          ...transition,
         }}
       ></motion.div>
       <motion.div
-        className={`absolute ${useMotions() ? 'block' : 'hidden'}`}
+        className={`absolute`}
         animate={{ opacity: 0 }}
-        transition={{ delay: 1, duration: 0.8, ...transition() }}
+        transition={{ delay: 1, duration: 0.8, ...transition }}
       >
         <motion.div
           className="origin-bottom-right rotate-[15deg] text-[5rem] z-[1]"
           animate={{
             rotate: [15, 10, 15, 5],
           }}
-          transition={{ duration: 0.8, ...transition() }}
+          transition={{ duration: 0.8, ...transition }}
         >
           <span>👋</span>
         </motion.div>
@@ -93,7 +84,7 @@ export default function Intro() {
           <motion.div
             initial={{ fontSize: '5rem' }}
             animate={{ fontSize: '2rem' }}
-            transition={{ delay: 3.3, duration: 1, ...transition() }}
+            transition={{ delay: 3.3, duration: 1, ...transition }}
           >
             <span className={`${radley_i.className}`}>Hello</span>,{' '}
             <span className="sr-only">I'm Rain</span>
@@ -113,7 +104,7 @@ export default function Intro() {
                   transition={{
                     delay: 2.2 + (i < 3 ? 0 : i) / 10,
                     duration: 0.01,
-                    ...transition(),
+                    ...transition,
                   }}
                   onAnimationComplete={() =>
                     i === name.length - 1 && setJustifyContent('space-around')
@@ -133,7 +124,7 @@ export default function Intro() {
                 transition={{
                   ...springTransition,
                   delay: 4,
-                  ...transition(),
+                  ...transition,
                 }}
               >
                 Full Stack Developer
@@ -146,7 +137,7 @@ export default function Intro() {
                 transition={{
                   ...springTransition,
                   delay: 4.5,
-                  ...transition(),
+                  ...transition,
                 }}
               >
                 I've been doing web development for nearly a{' '}
@@ -167,7 +158,7 @@ export default function Intro() {
               ...springTransition,
               delay: 5,
               duration: 0.7,
-              ...transition(),
+              ...transition,
             }}
           >
             <Link
@@ -211,7 +202,7 @@ export default function Intro() {
           animate={{
             width: '300px',
           }}
-          transition={{ delay: 3.2, ...transition() }}
+          transition={{ delay: 3.2, ...transition }}
         >
           <motion.span
             className=" bg-white border-4 border-solid border-white h-[250px] 
@@ -219,7 +210,7 @@ export default function Intro() {
             style={{}}
             initial={{ opacity: 0, overflow: 'hidden' }}
             animate={{ opacity: 1, overflow: 'visible' }}
-            transition={{ delay: 4.5, duration: 1, ...transition() }}
+            transition={{ delay: 4.5, duration: 1, ...transition }}
           >
             <motion.span
               className="bg-bottom bg-no-repeat bg-[size:340px] inline-block h-[290px] 
@@ -233,7 +224,7 @@ export default function Intro() {
                 delay: 5,
                 duration: 1,
                 ease: circOut,
-                ...transition(),
+                ...transition,
               }}
             ></motion.span>
             <motion.span
@@ -253,7 +244,7 @@ export default function Intro() {
           width="90"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 6, ...transition() }}
+          transition={{ delay: 6, ...transition }}
         >
           <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
           <path d="M0-.75h24v24H0z" fill="none" />

@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useSectionInView } from '@/../lib/hooks';
 import { sendEmail } from '@/../actions/sendEmail';
-import SubmitBtn from './submit-btn';
+import { useSectionInView } from '@/../lib/hooks';
+import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import SectionHeader from './section-header';
+import SubmitBtn from './submit-btn';
 
 export default function Contact() {
   const { ref } = useSectionInView('Contact');
@@ -15,7 +14,7 @@ export default function Contact() {
     <motion.section
       id="contact"
       ref={ref}
-      className="h-[100vh] mb-28 mx-auto max-w-[45rem] text-center leading-8 scroll-mt-24 sm:mb-40 "
+      className="bg-stone-200 h-[100vh] leading-8 mb-28 max-w-[45rem] mx-auto pt-[15vh] sm:mb-40 snap-center text-center"
       initial={{
         opacity: 0,
       }}

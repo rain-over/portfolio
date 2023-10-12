@@ -1,3 +1,6 @@
+import MobileDetect from 'mobile-detect';
+import { GetServerSidePropsContext } from 'next';
+
 export const validateString = (
   value: unknown,
   maxLength: number
@@ -23,4 +26,10 @@ export const getErrorMessage = (error: unknown): string => {
   }
 
   return message;
+};
+
+export const getIsSsrMobile = (context: GetServerSidePropsContext) => {
+  const md = new MobileDetect(context.req.headers['user-agent'] as string);
+
+  return Boolean(md.mobile());
 };

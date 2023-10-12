@@ -12,7 +12,7 @@ export default function Experience() {
 
   return (
     <section
-      className="h-[100vh] mb-28 mx-auto text-center leading-8 scroll-mt-24 sm:mb-40 "
+      className="bg-neutral-200 h-[100vh] leading-8 mx-auto pt-[15vh] snap-center text-center"
       id="experience"
       ref={ref}
     >

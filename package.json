@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +13,7 @@
     "@react-email/tailwind": "^0.0.9",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
+    "mobile-detect": "^1.4.5",
     "next": "latest",
     "react": "latest",
     "react-chrono": "^2.3.0",
