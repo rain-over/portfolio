@@ -19,17 +19,12 @@ export function useSectionInView(section: SectionName, threshold = 0.65) {
   return { ref };
 }
 
-export function useMotions() {
-  let storage: Storage;
-  try {
-    storage = window.localStorage;
-  } catch (error) {
-    console.log(error);
-    return;
+export function hasTimePassed() {
+  let timestamp = 1000;
+  if (localStorage) {
+    timestamp = JSON.parse(localStorage?.getItem('timestamp') || '1000');
   }
-
   const currTimestamp = Date.now();
-  const timestamp = JSON.parse(storage.getItem('timestamp') || '1000');
 
   const timeLimit = 0.05 * 60 * 60 * 1000; // 3 hours
 
@@ -37,8 +32,8 @@ export function useMotions() {
 
   useEffect(() => {
     hasTimePassed
-      ? storage.setItem('timestamp', currTimestamp.toString())
-      : storage.setItem('timestamp', timestamp.toString());
+      ? localStorage.setItem('timestamp', currTimestamp.toString())
+      : localStorage.setItem('timestamp', timestamp.toString());
   }, []);
 
   console.log('hasTimePassed', hasTimePassed);

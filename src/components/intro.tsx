@@ -1,14 +1,12 @@
 'use client';
 
 import { Transition, circOut, motion } from 'framer-motion';
-// import motion from './motion';
 
-import { useMotions, useSectionInView } from '@/../lib/hooks';
+import { hasTimePassed, useSectionInView } from '@/../lib/hooks';
 import { Radley } from 'next/font/google';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-import { animate, transition as trans } from '@/../lib/framer-config';
 import { JustifyContentProperty } from '@/../lib/types';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { FiDownload, FiMail } from 'react-icons/fi';
@@ -26,7 +24,9 @@ export default function Intro() {
     useState<JustifyContentProperty>('center');
   const { ref } = useSectionInView('Home');
 
-  const transition: Transition = useMotions() ? {} : { delay: 0, duration: 0 };
+  const transition: Transition = hasTimePassed()
+    ? {}
+    : { delay: 0, duration: 0 };
 
   const springTransition: Transition = {
     type: 'spring',
@@ -36,8 +36,6 @@ export default function Intro() {
     ...transition,
   };
 
-  const hide = animate({ opacity: 0 });
-
   return (
     <section
       className="bg-slate-200 flex flex-row h-[100vh] 
@@ -46,7 +44,7 @@ export default function Intro() {
       ref={ref}
     >
       <motion.div
-        className="absolute bg-black h-full hidden sm:block  w-full"
+        className="absolute bg-black h-full hidden sm:block w-full"
         initial={{ opacity: 1 }}
         animate={{
           opacity: 0,
