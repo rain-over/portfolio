@@ -19,7 +19,7 @@ export function useSectionInView(section: SectionName, threshold = 0.65) {
   return { ref };
 }
 
-export const hasTimePassed = () => {
+export const useMotions = () => {
   let timestamp = 1000;
   if (localStorage) {
     timestamp = JSON.parse(localStorage?.getItem('timestamp') || '1000');

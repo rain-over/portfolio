@@ -2,7 +2,7 @@
 
 import { Transition, circOut, motion } from 'framer-motion';
 
-import { hasTimePassed, useSectionInView } from '@/../lib/hooks';
+import { useMotions, useSectionInView } from '@/../lib/hooks';
 import { Radley } from 'next/font/google';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -24,9 +24,7 @@ export default function Intro() {
     useState<JustifyContentProperty>('center');
   const { ref } = useSectionInView('Home');
 
-  const transition: Transition = hasTimePassed()
-    ? {}
-    : { delay: 0, duration: 0 };
+  const transition: Transition = useMotions() ? {} : { delay: 0, duration: 0 };
 
   const springTransition: Transition = {
     type: 'spring',
