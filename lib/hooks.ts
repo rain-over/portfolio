@@ -21,7 +21,7 @@ export function useSectionInView(section: SectionName, threshold = 0.65) {
 
 export const useMotions = () => {
   let timestamp = 1000;
-  if (localStorage) {
+  if (localStorage !== undefined) {
     timestamp = JSON.parse(localStorage?.getItem('timestamp') || '1000');
   }
   const currTimestamp = Date.now();
