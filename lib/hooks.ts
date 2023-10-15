@@ -19,14 +19,14 @@ export function useSectionInView(section: SectionName, threshold = 0.65) {
   return { ref };
 }
 
-export function hasTimePassed() {
+export const hasTimePassed = () => {
   let timestamp = 1000;
   if (localStorage) {
     timestamp = JSON.parse(localStorage?.getItem('timestamp') || '1000');
   }
   const currTimestamp = Date.now();
 
-  const timeLimit = 0.05 * 60 * 60 * 1000; // 3 hours
+  const timeLimit = 0.25 * 60 * 60 * 1000; // 3 hours
 
   const hasTimePassed = currTimestamp - timestamp > timeLimit;
 
@@ -38,7 +38,7 @@ export function hasTimePassed() {
 
   console.log('hasTimePassed', hasTimePassed);
   return hasTimePassed;
-}
+};
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<{
