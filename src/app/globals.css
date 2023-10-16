@@ -31,4 +31,32 @@
     bottom: -19px;
     position: absolute;
   }
+  .dark .profile-cover{
+    background: #171717;
+      background: radial-gradient(
+        circle 20px at 100% 0%,
+        transparent,
+        transparent 125px,
+        #171717 100px
+      ),
+      radial-gradient(
+        circle 20px at 0% 0%,
+        transparent,
+        transparent 125px,
+        #171717 100px
+      );
+      background-size: 125px 200px, 125px 200px;
+      background-position: 0px 0px, 100% 0;
+      background-repeat: no-repeat;
+  }
+
+}
+.nav {
+  transform: translateY(-100px);
+}
+
+.nav[data-isOpen='true'] {
+  /* transform: none;
+  transform-origin: 50% 50% 0px; */
+  transform: translateY(0);
 }

@@ -12,7 +12,9 @@
     "@react-email/components": "^0.0.7",
     "@react-email/tailwind": "^0.0.9",
     "clsx": "^2.0.0",
+    "eslint-plugin-react": "^7.33.2",
     "framer-motion": "^10.16.4",
+    "husky": "^8.0.3",
     "mobile-detect": "^1.4.5",
     "next": "latest",
     "react": "latest",
@@ -33,7 +35,19 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "latest",
     "typescript": "latest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "npm run lint"
+    ]
   }
 }

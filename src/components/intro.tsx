@@ -1,6 +1,12 @@
 'use client';
 
-import { Transition, circOut, motion } from 'framer-motion';
+import {
+  Transition,
+  circOut,
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 
 import { useMotions, useSectionInView } from '@/../lib/hooks';
 import { Radley } from 'next/font/google';
@@ -23,6 +29,8 @@ export default function Intro() {
   const [justifyContent, setJustifyContent] =
     useState<JustifyContentProperty>('center');
   const { ref } = useSectionInView('Home');
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 300]);
 
   const transition: Transition = useMotions() ? {} : { delay: 0, duration: 0 };
 
@@ -36,13 +44,13 @@ export default function Intro() {
 
   return (
     <section
-      className="bg-slate-200 flex flex-row h-[100vh] 
-      items-center justify-center relative snap-center w-full"
+      className="relative flex h-[100vh] w-full snap-center flex-row items-center 
+        justify-center bg-slate-200 dark:bg-neutral-900"
       id="home"
       ref={ref}
     >
       <motion.div
-        className="absolute bg-black h-full hidden sm:block w-full"
+        className="absolute hidden h-full w-full bg-black dark:bg-white sm:block"
         initial={{ opacity: 1 }}
         animate={{
           opacity: 0,
@@ -63,7 +71,7 @@ export default function Intro() {
         transition={{ delay: 1, duration: 0.8, ...transition }}
       >
         <motion.div
-          className="origin-bottom-right rotate-[15deg] text-[5rem] z-[1]"
+          className="z-[1] origin-bottom-right rotate-[15deg] text-[5rem]"
           animate={{
             rotate: [15, 10, 15, 5],
           }}
@@ -73,14 +81,15 @@ export default function Intro() {
         </motion.div>
       </motion.div>
       <div
-        className="flex flex-col-reverse items-center h-[670px] md:h-[300px] ml-5 w-[1200px] md:flex-row lg:mx-0"
+        className="ml-5 flex h-[670px] w-[1200px] flex-col-reverse items-center 
+          dark:text-white md:h-[300px] md:flex-row lg:mx-0"
         style={{ justifyContent }}
       >
         <motion.div layout transition={{ springTransition }}>
           <motion.div
             initial={{ fontSize: '5rem' }}
             animate={{ fontSize: '2rem' }}
-            transition={{ delay: 3.3, duration: 1, ...transition }}
+            transition={{ delay: 3.3, duration: 0.3, ...transition }}
           >
             <span className={`${radley_i.className}`}>Hello</span>,{' '}
             <span className="sr-only">I'm Rain</span>
@@ -114,7 +123,7 @@ export default function Intro() {
           <motion.div>
             <p>
               <motion.span
-                className="font-bold inline-block text-[3rem]"
+                className="inline-block text-[3rem] font-bold"
                 initial={{ opacity: 0, y: 150 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -147,7 +156,8 @@ export default function Intro() {
             </p>
           </motion.div>
           <motion.div
-            className="flex flex-col font-medium gap-2 items-center md:flex-row mt-10 sm:justify-start text-lg"
+            className="mt-10 flex flex-col items-center gap-2 text-lg font-medium 
+              sm:justify-start md:flex-row"
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -158,15 +168,17 @@ export default function Intro() {
             }}
           >
             <Link
-              className="active:scale-105 bg-white flex focus:scale-110 gap-2 
-                  hover:scale-110 items-center outline-none px-5 py-1 rounded-full shadow-sm transition"
+              className="flex items-center gap-2 rounded-full bg-white  px-5 py-1 
+                text-gray-700 shadow-sm outline-none transition hover:scale-110 
+                focus:scale-110 active:scale-105"
               href="#contact"
             >
               <FiMail /> Contact me
             </Link>
             <a
-              className="active:scale-105 bg-white flex focus:scale-110 gap-2 
-                  hover:scale-110 items-center outline-none px-5 py-1 rounded-full shadow-sm transition"
+              className="flex items-center gap-2 rounded-full bg-white px-5 py-1 
+                text-gray-700 shadow-sm outline-none transition hover:scale-110 
+                focus:scale-110 active:scale-105"
               download
               href="/CV.pdf"
             >
@@ -174,16 +186,18 @@ export default function Intro() {
             </a>
             <div className="flex flex-row gap-2">
               <a
-                className="active:scale-105 bg-white flex focus:scale-110 hover:scale-110 items-center 
-                    outline-none px-2 py-2 rounded-full shadow-sm text-[1.35rem] text-gray-700 transition"
+                className="flex items-center rounded-full bg-white px-2 py-2 
+                  text-[1.35rem] text-gray-700 shadow-sm outline-none transition 
+                  hover:scale-110 focus:scale-110 active:scale-105"
                 href="https://github.com/rain-over"
                 target="_blank"
               >
                 <FaGithubSquare />
               </a>
               <a
-                className="active:scale-105 bg-white flex focus:scale-110 hover:scale-110 items-center 
-                    outline-none px-2 py-2 rounded-full shadow-sm text-[1.35rem] text-gray-700 transition"
+                className="flex items-center rounded-full bg-white px-2 py-2 
+                  text-[1.35rem] text-gray-700 shadow-sm outline-none transition 
+                  hover:scale-110 focus:scale-110 active:scale-105"
                 href="https://linkedin.com/rain-over"
                 target="_blank"
               >
@@ -201,19 +215,20 @@ export default function Intro() {
           transition={{ delay: 3.2, ...transition }}
         >
           <motion.span
-            className=" bg-white border-4 border-solid border-white h-[250px] 
-                inline-block mt-[30px] relative rounded-[50%] w-[250px]"
+            className=" relative mt-[30px] inline-block h-[250px] w-[250px] 
+              rounded-[50%] border-4 border-solid border-white bg-white"
             style={{}}
             initial={{ opacity: 0, overflow: 'hidden' }}
             animate={{ opacity: 1, overflow: 'visible' }}
             transition={{ delay: 4.5, duration: 1, ...transition }}
           >
             <motion.span
-              className="bg-bottom bg-no-repeat bg-[size:340px] inline-block h-[290px] 
-                  mt-[-48px] ml-[1px] rounded-b-[242px] w-[240px]"
+              className="ml-[1px] mt-[-48px] inline-block h-[290px] w-[240px] 
+                  rounded-b-[242px] bg-[size:340px] bg-bottom bg-no-repeat"
               initial={{ opacity: 0, y: 100 }}
               style={{
                 backgroundImage: `url('@/../profile_photo.png')`,
+                y: y1,
               }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -225,8 +240,8 @@ export default function Intro() {
             ></motion.span>
             <motion.span
               className="profile-cover"
-              animate={{ opacity: 0 }}
-              transition={{ delay: 7 }}
+              // animate={{ opacity: 0 }}
+              // transition={{ delay: 7, ...transition }}
             ></motion.span>
           </motion.span>
         </motion.div>

@@ -37,8 +37,6 @@ export const useMotions = () => {
       ? localStorage.setItem('timestamp', currTimestamp.toString())
       : localStorage.setItem('timestamp', timestamp.toString());
   }, []);
-
-  console.log('hasTimePassed', hasTimePassed);
   return hasTimePassed;
 };
 

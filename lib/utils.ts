@@ -33,3 +33,12 @@ export const getIsSsrMobile = (context: GetServerSidePropsContext) => {
 
   return Boolean(md.mobile());
 };
+
+export const debounce = (fn: Function, delay = 500) => {
+  let timetoutId: NodeJS.Timeout;
+
+  return (...args: any) => {
+    clearTimeout(timetoutId);
+    timetoutId = setTimeout(() => fn(...args), delay);
+  };
+};
