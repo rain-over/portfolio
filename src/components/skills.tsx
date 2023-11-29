@@ -2,23 +2,12 @@
 
 import SectionHeader from './section-header';
 
-import { skillsData } from '@/../lib/data';
+import { currentTech, skillsData } from '@/../lib/data';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { useSectionInView } from '../../lib/hooks';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useSectionInView } from '@/../lib/hooks';
+import { useRef } from 'react';
 
-const currentTech: string[] = [
-  'JavaScript',
-  'TypeScript',
-  'React',
-  'Next.js',
-  'Tailwind',
-  'Git',
-  'Tailwind',
-  'Framer Motion',
-  'HTML',
-  'CSS',
-];
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
@@ -34,35 +23,51 @@ const fadeInAnimationVariants = {
 };
 
 export default function Skills() {
-  const { ref } = useSectionInView('Skills');
+  const { ref, inView } = useSectionInView('Skills');
+  const ref1 = useRef(null);
+  const { scrollY, scrollYProgress } = useScroll({
+    target: ref1,
+    offset: ['0 1', '2 0'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 600]);
+  const y1 = useTransform(scrollY, [0, 400], [0, 150]);
 
   return (
-    <section
-      className="h-[100vh] max-w-[45rem] mb-28 mx-auto pt-[15vh] sm:mb-40 snap-center text-center"
+    <motion.section
+      className="mx-auto h-[100vh] max-w-[45rem] snap-center overflow-hidden bg-white pt-8 text-center dark:bg-cyan-950"
       id="skills"
       ref={ref}
+      style={{}}
     >
-      <SectionHeader>My skills</SectionHeader>
+      <motion.div></motion.div>
+      <motion.div
+        ref={ref1}
+        className=""
+        style={{ y }}
+        // transition={{ ease: easeInOut }}
+      >
+        <SectionHeader>My skills</SectionHeader>
 
-      <ul className="flex flex-wrap gap-2 justify-center text-gray-80 text-lg 0">
-        {skillsData.map((skill, index) => (
-          <motion.li
-            className={clsx(
-              'bg-white borderBlack rounded-xl px-5 py-3 shadow-sm se:px-3 se:py-1',
-              {
-                'border border-green-700': currentTech.includes(skill),
-              }
-            )}
-            custom={index}
-            initial="initial"
-            key={index}
-            variants={fadeInAnimationVariants}
-            whileInView="animate"
-          >
-            {skill}
-          </motion.li>
-        ))}
-      </ul>
-    </section>
+        <ul className="text-gray-80 0 flex flex-wrap justify-center gap-2 text-lg">
+          {skillsData.map((skill, index) => (
+            <motion.li
+              className={clsx(
+                'borderBlack rounded-xl bg-white px-5 py-3 shadow-sm se:px-3 se:py-1',
+                {
+                  'border border-green-700': currentTech.includes(skill),
+                }
+              )}
+              custom={index}
+              initial="initial"
+              key={index}
+              variants={fadeInAnimationVariants}
+              whileInView="animate"
+            >
+              {skill}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.section>
   );
 }

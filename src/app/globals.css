@@ -3,26 +3,34 @@
 @tailwind utilities;
 
 @layer components {
+  .card-bg {
+    padding:20px;
+    position:relative;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.5rem;
+  }
+
   .full-bleed {
-    box-shadow: 0 0 0 100vmax #e4e4e7;
+    box-shadow: 0 0 0 100vmax #F4F4F5;
     clip-path: inset(0 -100vmax);
   }
 
   .profile-cover {
     width: 250px;
     height: 140px;
-    background: #e2e8f0;
+    background: #FFFFFF;
     background: radial-gradient(
         circle 20px at 100% 0%,
         transparent,
         transparent 125px,
-        #e2e8f0 100px
+        #FFFFFF 100px
       ),
       radial-gradient(
         circle 20px at 0% 0%,
         transparent,
         transparent 125px,
-        #e2e8f0 100px
+        #FFFFFF 100px
       );
     background-size: 125px 200px, 125px 200px;
     background-position: 0px 0px, 100% 0;
@@ -31,6 +39,7 @@
     bottom: -19px;
     position: absolute;
   }
+
   .dark .profile-cover{
     background: #171717;
       background: radial-gradient(
@@ -49,14 +58,78 @@
       background-position: 0px 0px, 100% 0;
       background-repeat: no-repeat;
   }
+  
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--red);
+    transform-origin: 0%;
+  }
 
-}
-.nav {
-  transform: translateY(-100px);
+  p.readable span { 
+    display: inline-block; 
+    margin:0 1px 1rem;
+  }
+  .readable span::first-letter {
+    font-weight: 600;
+  }
 }
 
-.nav[data-isOpen='true'] {
-  /* transform: none;
-  transform-origin: 50% 50% 0px; */
-  transform: translateY(0);
+_html {
+  --s: 200px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+  
+  background:
+    repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) 
+     calc(.5*var(--s)) calc(.5*var(--s)*0.577),
+    repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+  background-size: var(--s) calc(var(--s)*0.577);
+}
+
+
+.motion-progress {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 4px;
+  top: 0;
+  left: 0;
+  background: #424242;
+}
+
+.motion-progress > div {
+  width: 100%;
+  height: 100%;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+} 
+
+.carousel {
+  display: flex;
+  gap: 48px;
+}
+
+.carousel__slide {
+  /* width: 300px; */
+  height: 300px;
+  background-color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
 }

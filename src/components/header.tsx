@@ -28,13 +28,13 @@ export default function Header() {
 
         setVisible(window.scrollY > 0);
         setAlignItems(window.scrollY > 0 ? 'flex-end' : 'flex-start');
-      }, 300),
+      }, 200),
     []
   );
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    console.log('visible', visible, window.scrollY > 0);
+    // console.log('visible', visible, window.scrollY > 0);
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visible, handleScroll]);
@@ -62,8 +62,8 @@ export default function Header() {
         >
           <div
             className="m-[1px] flex h-[3.4rem] w-[3.4rem] items-center justify-center 
-              rounded-full border-[1px] border-gray-200 bg-white 
-              dark:border-gray-700  dark:bg-neutral-900"
+              rounded-full border-[1px] border-gray-200 bg-white dark:border-gray-700 
+              dark:bg-neutral-900"
           >
             <h1 className={`${nunito.className} text-lg font-bold `}>
               {'{rnvr}'}
@@ -71,7 +71,7 @@ export default function Header() {
           </div>
           <div className="pointer-events-auto mr-[1px] flex items-center justify-end">
             <nav
-              className=" left-0 right-0 flex h-[3.5rem] w-full flex-wrap 
+              className="left-0 right-0 flex h-[3.5rem] w-full flex-wrap 
                 items-center justify-center py-1 text-[0.9rem] sm:left-[auto] 
                 sm:right-[1rem] sm:w-[34rem] sm:py-0  sm:text-[1rem]"
             >
@@ -83,8 +83,8 @@ export default function Header() {
                   <motion.li
                     animate={{ y: 0, opacity: 1 }}
                     className={clsx(
-                      `group relative  flex h-[initial] items-center justify-center 
-                      hover:scale-50  hover:text-black dark:hover:text-white`,
+                      `group relative flex h-[initial] items-center justify-center 
+                      hover:scale-50 hover:text-black dark:hover:text-white`,
                       {
                         'scale-50 text-black dark:text-white':
                           activeSection === link.name,
@@ -95,9 +95,7 @@ export default function Header() {
                   >
                     <Link
                       className="flex w-full items-center justify-center
-                        px-3 py-1  outline-none
-                        focus:scale-105
-                        sm:py-3"
+                        px-3 py-1  outline-none focus:scale-105 sm:py-3"
                       href={link.hash}
                       onClick={() => {
                         setActiveSection(link.name); // set active section on scroll

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.7.1",
     "@react-email/components": "^0.0.7",
     "@react-email/tailwind": "^0.0.9",
     "clsx": "^2.0.0",
@@ -16,15 +17,16 @@
     "framer-motion": "^10.16.4",
     "husky": "^8.0.3",
     "mobile-detect": "^1.4.5",
-    "next": "latest",
-    "react": "latest",
+    "next": "13.5.1",
+    "react": "18.2.0",
     "react-chrono": "^2.3.0",
-    "react-dom": "latest",
+    "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-intersection-observer": "^9.5.2",
     "react-vertical-timeline-component": "^3.6.0",
-    "resend": "^1.1.0"
+    "resend": "^1.1.0",
+    "throttle-debounce-ts": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "latest",
